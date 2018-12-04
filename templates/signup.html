@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    Sign Up
+{% endblock %}
+{% block content %}
+<center><h1>Agregar una persona</h1>
+<form method="post" action="{{ url_for('signup') }}">
+    <p>Ingresa un Nombre</p>
+    <p><input name="username" type="text"></p>
+    <p>Ingresa una clave</p>
+    <p><input name="password" type="password"></p>
+    <input type="submit" value="Agregar">
+    <p><input type="button" value="Volver" onclick="href='http://localhost:3000/'" ></p>
+</form></center>
+
+{% endblock %}
