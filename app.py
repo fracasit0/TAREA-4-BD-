@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask_sqlalchemy import SQLAlchemy
 #importo una biblioteca para los passwords y la seguridad
 from werkzeug.security import  generate_password_hash
 from werkzeug.security import check_password_hash
@@ -59,4 +60,4 @@ def login():
 
 if __name__ == '__main__':
     db.create_all()
-    app.run(debug=True,port=80)
+    app.run(debug=True,port=3000)
