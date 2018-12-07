@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}
+    Este es el html de Index
+{% endblock %}
+{% block content %}
+   <center><h1>Base de Datos en Flask </h1>
+    <form method="get" action="{{ url_for('search') }}">
+
+    <p><input type="text" name="nickname"></p>
+    <input type="submit" value="Buscar">
+    <br>
+
+    <input type="button" value="Registrar" onclick="location.href='http://localhost:3000/signup'">
+    <input type="button" value="Acceder" onclick="location.href='http://localhost:3000/login'">
+    </form></center>
+{% endblock %}
