@@ -16,43 +16,75 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= False
 db = SQLAlchemy(app)
 
 #Sql me permite cominicarme con el por medio de clases en python
-class Users(db.Model):
-    id = db.Column(db.Integer , primary_key=True)
-    #unique me dice que el username es unico y nullable me dice que este no se ingresa vavio
-    username = db.Column(db.String(50), unique= True, nullable=False)
+class personas(db.Model):
+    apodo = db.Column(db.String(50), primary_key=True)
     #ojo que no necesitamos que las claves sean unicas
     password = db.Column(db.String(80), nullable=False)
+    nativo = db.Column(db.String(80), nullable=False)
+    contacto = db.Column(db.Integer, nullable=False)
+    ventas = db.Column(db.Integer, nullable=True)
+    compras = db.Column(db.Integer, nullable=False)
+
+class cuenta(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    saldo = db.Column(db.Integer, nullable=False)
+    gastado = db.Column(db.Integer, nullable=False)
+    saldo = db.Column(db.String(255), nullable=False)
+
+class objeto(db.Model):
+    nombre = db.Column(db.String(126), primary_key=True)
+    legalidad = db.Column(db.Boolean, nullable=False)
+    codigo = db.Column(db.Integer, nullable=False)
+    precio = db.Column(db.Integer, nullable=False)
+    duenos = db.Column(db.Integer, nullable=False)
+
+class policia(db.Model):
+    placa = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(126), nullable=False)
+    soborno = db.Column(db.Date, nullable=False)
+
+class sector(db.Model):
+    numero = db.Column(db.Integer, primary_key=True)
+    ubicacion = db.Column(db.String(126), nullable=False)
+
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+
 @app.route("/search")
 def search():
-    nickname = request.args.get("nickname")
-    user = Users.query.filter_by(username=nickname).first()
+    nombre = request.args.get("nickname")
+    user = personas.query.filter_by(apodo=nombre).first()
     if user:
-        return user.username
+        return render_template("cuenta.html", nombre = nombre)
 
-    return "El usuario no existe"
+    else:
+        return "El usuario no existe"
+
+
 
 @app.route("/signup", methods=["GET","POST"])
 def signup():
     if request.method == "POST":
-        hashed_pw = generate_password_hash(request.form["password"], method="sha256")
-        new_user = Users(username=request.form["username"], password=hashed_pw)
+        #hashed_pw = generate_password_hash(request.form["password"], method="sha256")
+        new_user = personas(apodo=request.form["username"], password=request.form["password"], nativo=request.form["native"], contacto=request.form["contact"], ventas=0, compras=0)
         db.session.add(new_user)
         #nos confirma cadad uno de los cambios
         db.session.commit()
         return "ya te has registrado exitosamente "
     return  render_template("signup.html")
+
 @app.route("/login",methods=["GET","POST"])
 def login():
 #request es una solicitud, query es una consulta
     if request.method == "POST":
-        user = Users.query.filter_by(username=request.form["username"]).first()
+        usuario = personas.query.filter_by(apodo=request.form["username"]).first()
+        passwords = personas.query.filter_by(password=request.form["password"]).first()
 
         #si usuario y el password del hash es igual al passwor del usuario return
-        if user and check_password_hash(user.password,request.form["password"]):
+        if usuario and passwords:
             return "Estas loggeado"
         return "tus credenciales son invalidas, revisa he intenta de nuevo "
     #si es de tipo GET que renderice la plantilla

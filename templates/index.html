@@ -7,8 +7,10 @@
     <form method="get" action="{{ url_for('search') }}">
 
     <p><input type="text" name="nickname"></p>
-    <input type="submit" value="Buscar" >
-    <input type="button" value="Agregar" onclick="location.href='http://localhost:3000/signup'">
-    <input type="button" value="Buscar" onclick="location.href='http://localhost:3000/login'">
+    <input type="submit" value="Buscar">
+    <br>
+
+    <input type="button" value="Registrar" onclick="location.href='http://localhost:3000/signup'">
+    <input type="button" value="Acceder" onclick="location.href='http://localhost:3000/login'">
     </form></center>
 {% endblock %}
