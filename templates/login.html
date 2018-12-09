@@ -3,15 +3,15 @@
         Buscar
 {% endblock %}
 {% block content %}
-<center><h1>Buscar</h1>
+<center><h1>Inicio</h1>
 <form method="post" action="{{ url_for('login') }}">
 
     <p>Ingrese su apodo</p>
-    <p><input name="username" type="text"> </p>
+    <p><input name="username" type="text" required placeholder="Nombre de usuario"> </p>
     </br>
     <p>Ingrese su contraseña</p>
-    <p><input name="password" type="password"></p>
-    <input type="submit" value="Registrar">
+    <p><input name="password" type="password" required placeholder="contraseña"></p>
+    <input type="submit" value="Acceder" onclick="location.href='http://localhost:3000/cuenta'">
     <input type="button" value="Volver" onclick="location.href='http://localhost:3000'">
 </form>
 </center>

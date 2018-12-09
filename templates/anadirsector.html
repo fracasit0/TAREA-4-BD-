@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+        añadir sector
+{% endblock %}
+{% block content %}
+<center><h1>Nuevo sector</h1>
+
+    <form method="post" action="{{ url_for('addsec2') }}">
+          <p>Ingrese nombre del sector</p>
+          <p><input name="ubicacion" type="text" placeholder="Nombre sector" required></p>
+          <p><input type="submit" value="Añadir">
+          <input type="button" value="Salir"onclick="location.href='http://localhost:3000'" ></p>
+    </form></center>
+      <br>
+
+</center>
+{% endblock %}

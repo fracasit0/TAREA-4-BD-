@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 {% block title %}
-    Este es el html de Index
+    B4s3
 {% endblock %}
 {% block content %}
-   <center><h1>Base de Datos en Flask </h1>
-    <form method="get" action="{{ url_for('search') }}">
+   <center><h1>B4S3 CL4ND3ST1N4 </h1>
 
-    <p><input type="text" name="nickname"></p>
-    <input type="submit" value="Buscar">
-    <br>
-
+    <input type="button" name="sectors" value="Sectores" onclick="location.href='http://localhost:3000/lugares'">
+    <input type="button" name="users" value="usuarios" onclick="location.href='http://localhost:3000/usuarios'">
+    <input type="button" name="objects" value="objetos" onclick="location.href='http://localhost:3000/objetos'">
+    </br>
     <input type="button" value="Registrar" onclick="location.href='http://localhost:3000/signup'">
     <input type="button" value="Acceder" onclick="location.href='http://localhost:3000/login'">
-    </form></center>
 {% endblock %}

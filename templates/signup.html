@@ -3,18 +3,18 @@
     Sign Up
 {% endblock %}
 {% block content %}
-<center><h1>Agregar una persona</h1>
+<center><h1>Registrar nueva persona</h1>
 <form method="post" action="{{ url_for('signup') }}">
     <p>Ingresa un apodo</p>
-    <p><input name="username" type="text"></p>
+    <p><input name="username" type="text" required></p>
     <p>Ingresa una clave</p>
-    <p><input name="password" type="password"></p>
+    <p><input name="password" type="password" required></p>
     <p>Ingrese nacionalidad</p>
-    <p><input name="native" type="text"></p>
-    <p>Ingrese contacto</p>
-    <p><input name="contact" type="number"></p>
+    <p><input name="native" type="text" required></p>
+    <p>Ingrese contacto:</p>
+    <p><input name="contact" type="number"size="6" min="1000" max="99999999999" value="56944444"></p>
     <input type="submit" value="Registrar">
-    <p><input type="button" value="Volver" onclick="href='location.http://localhost:3000/'" ></p>
+    <p><input type="button" value="Volver"onclick="location.href='http://localhost:3000'" ></p>
 </form></center>
 
 {% endblock %}

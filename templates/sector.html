@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}
+    Informacion sector {{ place.ubicacion }}
+{% endblock %}
+{% block content %}
+    <center><h1>Sector {{ place.ubicacion }} </h1> </center>
+
+      <p>Numero del sector: {{ place.numero }}<br/>
+      Nombre del sector: {{ place.ubicacion}}<br/>
+      <h5>Policias del sector: </h5>
+      {% for poli in police %}
+      <p> Nombre: {{ poli.nombre }} - Placa: {{ poli.placa }} - Fecha de ultimo soborno: {{ poli.soborno }}</br> </p>
+      {% endfor %}
+      <p>
+
+      <form method="post" action="{{ url_for('addcop') }}">
+            <p>Ingrese nombre del policia</p>
+            <p><input name="name_cop" type="text" placeholder="Nombre" required></p>
+            <p>Ingrese placa del policia</p>
+            <p><input name="placa_cop" type="number" required></p>
+            <p>Ingrese ultimo soborno cop</p>
+            <p><input name="soborno_cop" type="text" placeholder="15 de febrero" required></p>
+            <p>Ingrese numero del sector del policia</p>
+            <p><input name="sector_cop" type="number" required></p>
+            <p><input type="submit" value="Añadir">
+            <input type="button" value="Salir"onclick="location.href='http://localhost:3000'" ></p>
+      </form></center>
+
+{% endblock %}

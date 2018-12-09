@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}
+    Informacion usuario {{ user.apodo }}
+{% endblock %}
+{% block content %}
+    <center><h1>Cuenta del usuario {{ user.apodo }} </h1> </center>
+
+      {% if logeado == true %}
+      Logeado correctamente {{ user.apodo }}!
+      {% endif %}
+
+
+      <p>Nativo: {{ user.nativo }}<br/>
+      Contacto: {{user.contacto}}<br/>
+      Nro ventas: {{ user.ventas }}<br/>
+      Nro.compras: {{ user.compras }}<br/>
+      ID cuenta: {{ user.id_c }}<br/>
+      {% if logeado == true %}
+      Contraseña: {{ user.password }}
+      {% endif %} <p>
+      <h5>Objetos del usuario: </h5>
+      {% for obj in object %}
+      <p> nombre: {{ obj.nombre }} - codigo {{ obj.codigo }} - legalidad {{ obj.legalidad }} - precio {{ obj.precio }} </br> </p>
+      {% endfor %}
+
+
+      {% if logeado == true %}
+      <form method="get" action="{{ url_for('addobject') }}">
+        <h5>Opciones de cuenta: </h1>
+        <input name="agregarobjeto" type="button" value="Añadir objeto" onclick="location.href='http://localhost:3000/addobject'">
+      </form>
+      {% endif %} <p>
+
+{% endblock %}

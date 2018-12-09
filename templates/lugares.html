@@ -1,0 +1,21 @@
+
+{% extends "base.html" %}
+{% block title %}
+        Lugares
+{% endblock %}
+{% block content %}
+<center><h1>Sector</h1>
+    {% for lugar in place %}
+    <p> {{ lugar.numero }} - {{ lugar.ubicacion }} </br> </p>
+    {% endfor %}
+
+    <form method="get" action="{{ url_for('searchplaces') }}">
+      <p><input type="number" name="Buscar_sec" placeholder="Buscar por nro de sector" ></p>
+      <input type="submit" value="Buscar sector" onclick="">
+      <input type="button" value="Añadir sector" onclick="location.href='http://localhost:3000/addsec1'">
+      <input type="button" value="Volver"onclick="location.href='http://localhost:3000'">
+    </form>
+      <br>
+
+</center>
+{% endblock %}
