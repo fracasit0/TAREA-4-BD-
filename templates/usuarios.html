@@ -7,7 +7,7 @@
 
   <form method="get" action="{{ url_for('search') }}">
       {% for usuario in user %}
-      <p align="left" >Usuario: {{ usuario.apodo }} - contacto: {{ usuario.contacto }} - natividad: {{ usuario.nativo }} - cuenta: {{ usuario.id_c }} </br></p>
+      <p align="center" >Usuario: {{ usuario.apodo }} - contacto: {{ usuario.contacto }} - natividad: {{ usuario.nativo }} - cuenta: {{ usuario.id_c }}</br></p>
       {% endfor %}
 
       <p><input type="text" name="buscar_user" placeholder="Buscar usuario por apodo" ></p>

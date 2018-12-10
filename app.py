@@ -43,7 +43,7 @@ class objeto(db.Model):
     legalidad = db.Column(db.Boolean, nullable=False)
     codigo = db.Column(db.Integer, nullable=False, primary_key=True)
     precio = db.Column(db.Integer, nullable=False)
-    dueno_act = db.Column(db.String(50), db.ForeignKey('personas.apodo'))
+    dueno_act = db.Column(db.String(126), db.ForeignKey('personas.apodo'))
 
 class policia(db.Model):
     placa = db.Column(db.Integer, primary_key=True)
@@ -86,20 +86,25 @@ def objetos():
     object = objeto.query.all()
     return render_template("objetos.html", object = object)
 
-@app.route("/addobject", methods=["POST","GET"])
+@app.route("/addobject", methods=["GET"])
 def addobject():
     if request.method == "GET":
             user = personas.query.all()
             return render_template("anadirobj.html", user = user)
 
-@app.route("/addobject2", methods=["POST","GET"])
+@app.route("/addobject2", methods=["GET"])
 def addobject2():
     if request.method == "GET":
-            dueno = request.form["dueno_actual"]
+            dueno = request.args.get("actual")
             user = personas.query.filter_by(apodo=dueno).first()
+            legal = request.args.get("legal")
+            if legal == None:
+                legal = False
+            else:
+                legal = True
             if user:
                 number = objeto.query.count()
-                new_obj = objeto(nombre=request.form["name"], legalidad=request.form["legal"], codigo=number+1, precio=request.form["price"], dueno_act=request.form["dueno_actual"])
+                new_obj = objeto(nombre=request.args.get("name"), legalidad=legal, codigo=number+1, precio=request.args.get("price"), dueno_act=dueno)
                 db.session.add(new_obj)
                 db.session.commit()
                 object = objeto.query.all()

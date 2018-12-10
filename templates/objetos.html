@@ -6,19 +6,22 @@
 <center><h1>Objetos</h1>
 
   {% for obj in object %}
-  <p> nombre: {{ obj.nombre }} - legalidad {{ obj.legalidad }} - codigo {{ obj.codigo }} - precio {{ obj.precio }} - dueño {{ obj.dueno_act }} </br> </p>
+  {% if obj.legalidad %}
+  <p> nombre: {{ obj.nombre }} - legalidad: Si - codigo: {{ obj.codigo }} - precio: {{ obj.precio }} - dueño: {{ obj.dueno_act }} </br> </p>
+  {% else %}
+  <p> nombre: {{ obj.nombre }} - legalidad: No - codigo: {{ obj.codigo }} - precio: {{ obj.precio }} - dueño: {{ obj.dueno_act }} </br> </p>
+  {% endif %}
   {% endfor %}
 
-  <form method="post" action="{{ url_for('addobject2') }}">
-      <p>Ingrese nombre del objeto</p>
+  <form method="get" action="{{ url_for('addobject2') }}">
+      <p><h5>Agregar nuevo objeto:</h5></p>
+      <p>Ingrese nombre del objeto:</p>
       <p><input name="name" type="text" placeholder="Nombre" required></p>
-      <p>Ingrese legalidad</p>
-      <p><input name="legal" type="text" placeholder="legal" required></p>
+      <p>Legalidad: <input name="legal" type="checkbox" value="legal"></p>
       <p>Ingrese precio:</p>
       <p><input name="price" type="number" min="0" max="99999999999" value="150000"></p>
-      <p>Ingrese apodo del dueno actual</p>
-      <p><input name="dueno_actual" type="text" placeholder="Dueno actual" required></p>
-
+      <p>Ingrese apodo del dueno actual:</p>
+      <p><input name="actual" type="text" placeholder="Dueno" required></p>
 
       <p><input type="submit" value="Añadir">
       <input type="button" value="Salir"onclick="location.href='http://localhost:3000'" ></p>
